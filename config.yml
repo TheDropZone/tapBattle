@@ -1,0 +1,51 @@
+logging:
+  level: INFO
+  loggers:
+    com.tapBattle.server: DEBUG
+
+swagger: 
+  resourcePackage: com.tapBattle.server.resources
+  
+server: 
+  applicationConnectors: 
+  - type: http
+    port: !!int ${HTTP_PLATFORM_PORT}
+   
+database:
+  # the name of your JDBC driver
+  driverClass: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+  # the username
+  user: "TAP_SQL_CONECT"
+
+  # the password
+  password: "TapBatt1e_Aw$_sQ1"
+
+  # the JDBC URL
+  url: jdbc:sqlserver://tapbattle.cjqzkgkzjbtm.us-east-1.rds.amazonaws.com;databaseName=tapbattle;rewriteBatchedStatements=true;autoReconnect=true
+
+  # any properties specific to your JDBC driver:
+  properties:
+    charSet: UTF-8
+    hibernate.dialect: org.hibernate.dialect.SQLServer2012Dialect
+    hibernate.ddl-auto: update
+    hibernate.hbm2ddl.auto: update
+
+  # the maximum amount of time to wait on an empty pool before throwing an exception
+  maxWaitForConnection: 2s
+
+  # the SQL query to run when validating a connection's liveness
+  validationQuery: "/* MyApplication Health Check */ SELECT 1"
+
+  # the minimum number of connections to keep open
+  minSize: 8
+
+  # the maximum number of connections to keep open
+  maxSize: 32
+
+  # whether or not idle connections should be validated
+  checkConnectionWhileIdle: false
+
+  checkConnectionOnReturn: true
+
+  checkConnectionOnBorrow: true
